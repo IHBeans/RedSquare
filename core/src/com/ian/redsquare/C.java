@@ -46,4 +46,5 @@ public class C {
     public static final int FS_GAP = 30;
 
     public static final String test = "test";
+    public static final String test2 = "test2";
 }
