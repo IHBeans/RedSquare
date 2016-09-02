@@ -48,4 +48,6 @@ public class C {
     public static final String test = "test";
     public static final String test2 = "test2";
     public static final String test3 = "test3";
+
+    public static final String test4 = "test4";
 }
