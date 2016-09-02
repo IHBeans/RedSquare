@@ -44,4 +44,6 @@ public class C {
     public static final Color FINISHSQUARE_BLACK = Color.BLACK;
     public static final Vector2 FINISHSQUARE_START = new Vector2(600, 600);
     public static final int FS_GAP = 30;
+
+    public static final String test = "test";
 }
