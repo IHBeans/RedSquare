@@ -26,7 +26,7 @@ public class Level1 {
     BlueConnectPosition blueConnectPosition;
     boolean isConnected = false;
 
-    public Level1(RedSquareGame game, Viewport viewport, ShapeRenderer renderer){
+    public Level1(RedSquareGame game, Viewport viewport, ShapeRenderer renderer) {
         this.game = game;
         this.viewport = viewport;
 
@@ -38,13 +38,12 @@ public class Level1 {
     }
 
 
-    public void update(){
+    public void update() {
         blockWithMovement(redSquare, blueSquare);
         connectBlueSquare();
-        checkLevelEnd();
     }
 
-    public void render(){
+    public void render() {
         renderer.setProjectionMatrix(viewport.getCamera().combined);
         renderer.begin();
 
@@ -88,16 +87,8 @@ public class Level1 {
                     && square1.getPosition().y == square2.getPosition().y + C.SQUARE_SIZE
                     && !isConnected) {
 
-            } else {
-                square1.getPosition().y -= C.SQUARE_SIZE;
-            }
-        }
+            } else square1.getPosition().y -= C.SQUARE_SIZE;
 
-    }
-
-    public void checkLevelEnd() {
-        if (finishSquare.position.dst(blueSquare.position) == 0) {
-            game.showLevelEndScreen();
         }
     }
 

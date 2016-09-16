@@ -26,13 +26,6 @@ public class RedSquareScreen extends InputAdapter implements Screen {
     Viewport gameViewport;
     ShapeRenderer renderer;
 
-//    RedSquare redSquare;
-//    BlueSquare blueSquare;
-//    FinishSquare finishSquare;
-
-//    BlueConnectPosition blueConnectPosition;
-//    boolean isConnected = false;
-
     public RedSquareScreen(RedSquareGame game) {
         this.game = game;
     }
@@ -44,9 +37,6 @@ public class RedSquareScreen extends InputAdapter implements Screen {
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
 
-//        finishSquare = new FinishSquare(blueSquare);
-//        redSquare = new RedSquare();
-//        blueSquare = new BlueSquare();
         level1 = new Level1(game, gameViewport, renderer);
 
     }
@@ -63,165 +53,14 @@ public class RedSquareScreen extends InputAdapter implements Screen {
 
         level1.render();
 
-//        renderer.setProjectionMatrix(gameViewport.getCamera().combined);
-//        renderer.begin();
-//
-//        finishSquare.render(renderer);
-//        redSquare.render(renderer);
-//        blueSquare.render(renderer);
-
-        //  renderer.end();
-
-//        connectBlueSquare();
-//        blockWithMovement(redSquare, blueSquare);
-//        //   redSquareMovement(); //move redSqaure around, stops redSquare moving through blueSquare
-//        checkLevelEnd();
-
+        checkLevelEnd();
     }
 
-//    public void redSquareMovement() {
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-//            Gdx.app.log("right", "a");
-//            if (redSquare.position.x == blueSquare.position.x - C.SQUARE_SIZE
-//                    && redSquare.position.y == blueSquare.position.y
-//                    && !isConnected) {
-//                Gdx.app.log("right", "b");
-//            } else {
-//                redSquare.position.x += C.SQUARE_SIZE;
-//                Gdx.app.log("right", "c");
-//            }
-//        }
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-//            Gdx.app.log("l", "a");
-//            if (redSquare.position.x == blueSquare.position.x + C.SQUARE_SIZE
-//                    && redSquare.position.y == blueSquare.position.y
-//                    && !isConnected) {
-//                Gdx.app.log("l", "b");
-//            } else {
-//                redSquare.position.x -= C.SQUARE_SIZE;
-//                Gdx.app.log("l", "c");
-//            }
-//        }
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-//            Gdx.app.log("u", "a");
-//            if (redSquare.position.x == blueSquare.position.x
-//                    && redSquare.position.y == blueSquare.position.y - C.SQUARE_SIZE
-//                    && !isConnected) {
-//                Gdx.app.log("u", "b");
-//            } else {
-//                redSquare.position.y += C.SQUARE_SIZE;
-//                Gdx.app.log("u", "c");
-//            }
-//        }
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-//            Gdx.app.log("d", "a");
-//            if (redSquare.position.x == blueSquare.position.x
-//                    && redSquare.position.y == blueSquare.position.y + C.SQUARE_SIZE
-//                    && !isConnected) {
-//                Gdx.app.log("d", "b");
-//            } else {
-//                redSquare.position.y -= C.SQUARE_SIZE;
-//                Gdx.app.log("d", "c");
-//            }
-//        }
-//    }
-
-//    private void blockWithMovement(Square square1, Square square2) { //moves square1 if not blocked
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-//            if (square1.getPosition().x == square2.getPosition().x - C.SQUARE_SIZE
-//                    && square1.getPosition().y == square2.getPosition().y
-//                    && !isConnected) {
-//            } else {
-//                square1.getPosition().x += C.SQUARE_SIZE;
-//            }
-//        }
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-//            if (square1.getPosition().x == square2.getPosition().x + C.SQUARE_SIZE
-//                    && square1.getPosition().y == square2.getPosition().y
-//                    && !isConnected) {
-//
-//            } else {
-//                square1.getPosition().x -= C.SQUARE_SIZE;
-//            }
-//        }
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-//            if (square1.getPosition().x == square2.getPosition().x
-//                    && square1.getPosition().y == square2.getPosition().y - C.SQUARE_SIZE
-//                    && !isConnected) {
-//
-//            } else {
-//                square1.getPosition().y += C.SQUARE_SIZE;
-//            }
-//        }
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-//            if (square1.getPosition().x == square2.getPosition().x
-//                    && square1.getPosition().y == square2.getPosition().y + C.SQUARE_SIZE
-//                    && !isConnected) {
-//
-//            } else {
-//                square1.getPosition().y -= C.SQUARE_SIZE;
-//            }
-//        }
-//
-//    }
-//
-//    public void checkLevelEnd() {
-//        if (finishSquare.position.dst(blueSquare.position) == 0) {
-//            game.showLevelEndScreen();
-//        }
-//    }
-//
-//    public void connectBlueSquare() {
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-//            if (isConnected) {
-//                isConnected = false;
-//            } else if (isConnectable()) {
-//                isConnected = true;
-//            }
-//        }
-//
-//        if (isConnected) {
-//            switch (blueConnectPosition) {
-//                case RIGHT:
-//                    blueSquare.position.x = redSquare.position.x + C.SQUARE_SIZE;
-//                    blueSquare.position.y = redSquare.position.y;
-//                    break;
-//                case LEFT:
-//                    blueSquare.position.x = redSquare.position.x - C.SQUARE_SIZE;
-//                    blueSquare.position.y = redSquare.position.y;
-//                    break;
-//                case UP:
-//                    blueSquare.position.x = redSquare.position.x;
-//                    blueSquare.position.y = redSquare.position.y + C.SQUARE_SIZE;
-//                    break;
-//                case DOWN:
-//                    blueSquare.position.x = redSquare.position.x;
-//                    blueSquare.position.y = redSquare.position.y - C.SQUARE_SIZE;
-//                    break;
-//            }
-//        }
-//    }
-//
-//    private boolean isConnectable() {
-//        if (blueSquare.position.x - redSquare.position.x == C.SQUARE_SIZE && blueSquare.position.y == redSquare.position.y) {
-//            blueConnectPosition = BlueConnectPosition.RIGHT;
-//            return true;
-//        }
-//        if (blueSquare.position.x - redSquare.position.x == -C.SQUARE_SIZE && blueSquare.position.y == redSquare.position.y) {
-//            blueConnectPosition = BlueConnectPosition.LEFT;
-//            return true;
-//        }
-//        if (blueSquare.position.x == redSquare.position.x && blueSquare.position.y - redSquare.position.y == C.SQUARE_SIZE) {
-//            blueConnectPosition = BlueConnectPosition.UP;
-//            return true;
-//        }
-//        if (blueSquare.position.x == redSquare.position.x && blueSquare.position.y - redSquare.position.y == -C.SQUARE_SIZE) {
-//            blueConnectPosition = BlueConnectPosition.DOWN;
-//            return true;
-//        }
-//
-//        return false;
-//    }
+    private void checkLevelEnd() {
+        if (level1.finishSquare.position.dst(level1.blueSquare.position) == 0) {
+            game.showLevelEndScreen();
+        }
+    }
 
     @Override
     public void resize(int width, int height) {
@@ -248,13 +87,6 @@ public class RedSquareScreen extends InputAdapter implements Screen {
     @Override
     public void dispose() {
     }
-
-//    enum BlueConnectPosition {
-//        RIGHT,
-//        LEFT,
-//        UP,
-//        DOWN;
-//    }
 
 
 }
