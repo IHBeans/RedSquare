@@ -4,19 +4,19 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.ian.redsquare.C;
 
-public class FinishSquare {
+public class FinishSquare implements Square {
 
     BlueSquare blueSquare;
     public Vector2 position;
 
+    @Override
+    public Vector2 getPosition() {
+        return position;
+    }
 
     public FinishSquare(BlueSquare blueSquare) {
         this.blueSquare = blueSquare;
         this.position = new Vector2(C.FINISHSQUARE_START.x, C.FINISHSQUARE_START.y);
-    }
-
-    public void update() {
-
     }
 
     public void render(ShapeRenderer renderer) {
