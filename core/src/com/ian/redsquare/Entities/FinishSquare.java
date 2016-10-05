@@ -1,46 +1,55 @@
 package com.ian.redsquare.Entities;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ian.redsquare.C;
 
 public class FinishSquare implements Square {
 
-    BlueSquare blueSquare;
+    Viewport viewport;
+
     public Vector2 position;
+
+    long startTime;
+    SpriteBatch batch;
+    Array<TextureRegion> finishSquareTextures;
+    Animation finishSquareAnimation;
+
+    public FinishSquare(Viewport viewport) {
+        this.viewport = viewport;
+        batch = new SpriteBatch();
+        this.position = new Vector2(C.FINISHSQUARE_START.x, C.FINISHSQUARE_START.y);
+
+        startTime = TimeUtils.nanoTime();
+        finishSquareTextures = new Array<TextureRegion>(2);
+        finishSquareTextures.add(new TextureRegion(new Texture("finishSquareAnimations/finishSquare1.png")));
+        finishSquareTextures.add(new TextureRegion(new Texture("finishSquareAnimations/finishSquare2.png")));
+
+        finishSquareAnimation = new Animation(0.2f, finishSquareTextures, Animation.PlayMode.LOOP);
+    }
+
+    public void render() {
+        float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
+        TextureRegion redSquareAnimationTexture = finishSquareAnimation.getKeyFrame(elapsedTime);
+
+        batch.setProjectionMatrix(viewport.getCamera().combined);
+        batch.begin();
+        batch.draw(redSquareAnimationTexture, position.x, position.y, C.SQUARE_SIZE, C.SQUARE_SIZE);
+
+        batch.end();
+    }
 
     @Override
     public Vector2 getPosition() {
         return position;
     }
 
-    public FinishSquare(BlueSquare blueSquare) {
-        this.blueSquare = blueSquare;
-        this.position = new Vector2(C.FINISHSQUARE_START.x, C.FINISHSQUARE_START.y);
-    }
-
-    public void render(ShapeRenderer renderer) {
-        drawFinish(renderer);
-    }
-
-    private void drawFinish(ShapeRenderer renderer) {
-        renderer.set(ShapeRenderer.ShapeType.Filled);
-        for (int row = 0; row < 4; row++) {
-            for (int col = 0; col < 4; col++) {
-                int x = C.FS_GAP * col;
-                int y = C.FS_GAP * row;
-                if (row % 2 == col % 2)
-                    renderer.setColor(C.FINISHSQUARE_WHITE);
-                else renderer.setColor(C.FINISHSQUARE_BLACK);
-
-                renderer.rect(
-                        C.FINISHSQUARE_START.x + x,
-                        C.FINISHSQUARE_START.y + y,
-                        C.FS_GAP,
-                        C.FS_GAP
-                );
-            }
-        }
-
-    }
 }

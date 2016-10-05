@@ -2,6 +2,8 @@ package com.ian.redsquare.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ian.redsquare.C;
@@ -23,6 +25,9 @@ public class Level1 {
     FinishSquare finishSquare;
     ShapeRenderer renderer;
 
+    SpriteBatch batch;
+    Texture background;
+
     BlueConnectPosition blueConnectPosition;
     boolean isConnected = false;
 
@@ -30,9 +35,12 @@ public class Level1 {
         this.game = game;
         this.viewport = viewport;
 
-        redSquare = new RedSquare();
-        blueSquare = new BlueSquare();
-        finishSquare = new FinishSquare(blueSquare);
+        batch = new SpriteBatch();
+        background = new Texture("background_texture.png");
+
+        redSquare = new RedSquare(viewport);
+        blueSquare = new BlueSquare(viewport);
+        finishSquare = new FinishSquare(viewport);
 
         this.renderer = renderer;
     }
@@ -47,9 +55,18 @@ public class Level1 {
         renderer.setProjectionMatrix(viewport.getCamera().combined);
         renderer.begin();
 
-        finishSquare.render(renderer);
-        redSquare.render(renderer);
-        blueSquare.render(renderer);
+        batch.setProjectionMatrix(viewport.getCamera().combined);
+        batch.begin();
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 12; col++) {
+                batch.draw(background, col * 100, row * 100, C.SQUARE_SIZE, C.SQUARE_SIZE);
+            }
+        }
+        batch.end();
+
+        finishSquare.render();
+        redSquare.render();
+        blueSquare.render();
 
         renderer.end();
 

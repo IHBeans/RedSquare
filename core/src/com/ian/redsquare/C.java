@@ -12,7 +12,8 @@ public class C {
     public static final float WORLD_SIZE = 720;
 
     public static final float LEVEL_HEIGHT = 900;
-    public static final float LEVEL_AR = Gdx.graphics.getWidth()/LEVEL_HEIGHT;
+    public static final float LEVEL_WIDTH = 1200;
+    public static final float DEVICE_AR = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
 
     //LevelEndScreen properties
     public static final Color LE_BACKGROUND_COLOR = Color.FOREST;

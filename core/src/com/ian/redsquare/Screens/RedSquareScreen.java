@@ -33,7 +33,8 @@ public class RedSquareScreen extends InputAdapter implements Screen {
     @Override
     public void show() {
         float aspectRatio = Gdx.graphics.getWidth() / Gdx.graphics.getHeight();
-        gameViewport = new ExtendViewport(C.LEVEL_HEIGHT * aspectRatio, C.LEVEL_HEIGHT);
+        gameViewport = new ExtendViewport(C.LEVEL_WIDTH, C.LEVEL_HEIGHT);
+
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
 
